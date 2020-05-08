@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高莉-个人简历</title>
+    <link rel="stylesheet" href="css/index.css">
+    <style id="styleContent"></style>
+</head>
+
+<body>
+    <pre id="codeEdit" class="language-css" onscroll="toggleScrollBar(event)"></pre>
+    <div id="resume" onscroll="toggleScrollBar(event)"></div>
+</body>
+<script src="js/textarr.js"></script>
+<script src="js/write.js"></script>
+<script>
+    let currentIndex_ = 0
+
+    function writeIntro(intro = '', time, callback) {
+        let connect = document.querySelectorAll('.connect')
+        if (connect.length < 1) {
+            resume.innerHTML = intro
+        } else {
+            connect[connect.length - 1].innerHTML = intro
+        }
+        setTimeout(() => {
+            callback()
+        }, time);
+    }
+
+    function startResume() {
+        writeIntro(balloon, 700, () => {
+            writeIntro(line, 200, () => {
+                writeIntro(text, 0, () => {
+                    writeText(textArr[currentIndex_])
+                })
+            })
+        })
+    }
+    setTimeout(() => {
+        startResume()
+    }, 0);
+</script>
+<script>
+    let sbTimer = null
+
+    function toggleScrollBar(self) {
+        self = self.target
+        clearTimeout(sbTimer)
+
+        if (self.getAttribute('class') != 'sbShow')
+            self.classList.add('sbShow')
+
+        sbTimer = setTimeout(() => {
+            self.classList.remove('sbShow')
+        }, 80);
+    }
+</script>
+
+</html>
